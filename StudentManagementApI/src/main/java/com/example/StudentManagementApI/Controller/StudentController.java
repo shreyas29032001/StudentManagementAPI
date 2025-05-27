@@ -9,41 +9,35 @@ import com.example.StudentManagementApI.Model.Student;
 import com.example.StudentManagementApI.Service.StudentService;
 
 @RestController
+@RequestMapping("/api/students") // base path
+
 public class StudentController {
-
+    
     @Autowired
-    private StudentService service;
+    private StudentService studentService;
 
-    // POST /students – Add a student
-    @PostMapping("/students")
-    public Student createStudent(@RequestBody Student student) {
-        return service.save(student);
+    @PostMapping("/add")
+    public String addStudent(@RequestParam String name,
+                             @RequestParam String email,
+                             @RequestParam String course) {
+        studentService.save(name, email, course); // Call service method
+        return "Student added";
     }
-
-    // GET /students – Get all students
-    @GetMapping("/students")
+    @GetMapping("/get")
     public List<Student> getAllStudents() {
-        return service.getAll();
+        return studentService.getStudent(); // fetch all students
+    }
+    @GetMapping("/get/{id}")
+    public Student getStudentById(@PathVariable Long id) {
+        return studentService.getStudentById(id); // Calls service to fetch by ID
+    }
+    @PutMapping("/insert/{id}")
+    public String updateStudent(@PathVariable Long id, @RequestBody Student updatedStudent) {
+        return studentService.updateStudentById(id, updatedStudent);
     }
 
-    // GET /students/{id} – Get student by ID
-    @GetMapping("/students/{id}")
-    public ResponseEntity<Student> getStudent(@PathVariable Long id) {
-        return service.getById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    // PUT /students/{id} – Update student by ID
-    @PutMapping("/students/{id}")
-    public Student updateStudent(@PathVariable Long id, @RequestBody Student student) {
-        return service.update(id, student);
-    }
-
-    // DELETE /students/{id} – Delete student by ID
-    @DeleteMapping("/students/{id}")
-    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/delete/{id}")
+    public String deleteById(@PathVariable Long id){
+        return studentService.deleteBid(id);
     }
 }
