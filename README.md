@@ -133,6 +133,15 @@ http://localhost:8080/api/students
 
 ---
 
+| **Action**                                             | **Screenshot**                                                                             |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `POST /students/add` <br> *(Add Student)*              | ![POST](https://github.com/user-attachments/assets/20cc18bd-ce34-4d21-8b18-433448af5c23)   |
+| `GET /students/get` <br> *(Get All Students)*          | ![GET](https://github.com/user-attachments/assets/70d2be26-cabf-4d23-9b33-ad360c2469d6)    |
+| `GET /students/get/{id}` <br> *(Get Student By ID)*    | ![GET](https://github.com/user-attachments/assets/ca84141f-352f-4dad-a0dc-1c08768d479a)    |
+| `PUT /students/insert/{id}` <br> *(Update Student)*    | ![PUT](https://github.com/user-attachments/assets/b2e732b3-5c02-4727-8bf6-e8861e3acf3a)    |
+| `DELETE /students/delete/{id}` <br> *(Delete Student)* | ![DELETE](https://github.com/user-attachments/assets/50369ca0-f8b5-4891-b3c1-ad3b8fc3b334) |
+
+
 ## 📄 License
 
 This project is intended for learning and educational purposes only.
